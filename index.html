@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FFF-Verification</title>
+    <title>Responsive Banner with Dynamic Title and Event</title>
     <style>
         body, html {
             margin: 0;
@@ -26,10 +26,20 @@
             white-space: pre-wrap; /* To handle preformatted text */
         }
 
+        .event {
+            margin: 20px 0;
+            font-size: 1.5em;
+            color: #333;
+        }
+
         @media (max-width: 600px) {
             .banner h1 {
                 font-size: 1.5em;
                 padding: 20px 0;
+            }
+
+            .event {
+                font-size: 1em;
             }
         }
     </style>
@@ -40,16 +50,26 @@
         }
 
         window.onload = function() {
-            var value = getQueryParam('guestValue');
-            var element = document.getElementById('guest');
+            var guestValue = getQueryParam('guestValue');
+            var eventValue = getQueryParam('eventValue');
+            var guestElement = document.getElementById('guest');
+            var eventElement = document.getElementById('event');
+
+            if (guestElement && guestValue) {
+                guestElement.textContent = guestValue.replace(/%0A/g, '\n').replace(/%0D%0A/g, '\n');
+            }
+
+            if (eventElement && eventValue) {
+                eventElement.textContent = eventValue;
+            }
         };
     </script>
 </head>
 <body>
     <div class="banner">
         <h1 id="guest">Invalid ID</h1>
-        <h1 id="eventEl">Invalid Date</h1>
+        <div id="event" class="event">Invalid event</div>
     </div>
-    <p>hi there.</p>
+    <p>Thank you for attending.</p>
 </body>
 </html>
