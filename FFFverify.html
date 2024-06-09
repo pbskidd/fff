@@ -23,6 +23,7 @@
         .banner h1 {
             margin: 0;
             font-size: 2.5em;
+            white-space: pre-wrap; /* To handle preformatted text */
         }
 
         @media (max-width: 600px) {
@@ -42,7 +43,7 @@
             var value = getQueryParam('guestValue');
             var element = document.getElementById('guest');
             if (element && value) {
-                element.textContent = value;
+                element.textContent = value.replace(/%0A/g, '\n').replace(/%0D%0A/g, '\n');
             }
         };
     </script>
